@@ -150,7 +150,7 @@ def get_computer_move(board, computer_letter):
     if is_space_free(board, 5):
         return 5
 
-    return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+    return choose_random_move_from_list(board, [2, 4, 6, 8])
 
 
 while True:
