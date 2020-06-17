@@ -140,6 +140,12 @@ def get_computer_move(board, computer_letter):
                 make_move(copy_board, player_letter, i)
                 if is_winner(copy_board, player_letter):
                     return i
+
+    # Try to take one of the corners, if they are free.
+    move = choose_random_move_from_list(board, [1, 3, 7, 9])
+    if move is not None:
+        return move
+
     return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 
