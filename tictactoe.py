@@ -52,14 +52,18 @@ def is_space_free(board, move):
 def get_player_move(board):
     # Let the player type in their move.
     move = ' '
-    while move not in '1 2 3 4 5 6 7 8 9'.split() or not is_space_free(board, int(move)):
+    while move not in '1 2 3 4 5 6 7 8 9'.split():
         print('What is your next move? (1-9)')
         move = input()
     return int(move)
 
 
 def make_move(board, letter, move):
-    board[move] = letter
+    if board[move] == ' ':
+        board[move] = letter
+    else:
+        print("You Cant place there")
+        get_player_move(board)
 
 
 def is_winner(board, letter):
@@ -110,7 +114,15 @@ def get_computer_move(board, computer_letter):
         player_letter = 'O'
     else:
         player_letter = 'X'
-    return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+    # Here is our algorithm for our Tic Tac Toe AI:
+    # First, check if we can win in the next move
+        for i in range(1, 10):
+            if is_winner(board, computer_letter):
+                if is_space_free(board, i):
+                    return i
+                    make_move(board, computer_letter, i)
+            return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 
 while True:
