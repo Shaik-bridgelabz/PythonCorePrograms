@@ -146,6 +146,10 @@ def get_computer_move(board, computer_letter):
     if move is not None:
         return move
 
+    # Try to take the center, if it is free.
+    if is_space_free(board, 5):
+        return 5
+
     return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 
