@@ -63,7 +63,8 @@ def make_move(board, letter, move):
         board[move] = letter
     else:
         print("You Cant place there")
-        get_player_move(board)
+        new_move = get_player_move(board)
+        make_move(board, letter, new_move)
 
 
 def is_winner(board, letter):
@@ -108,6 +109,14 @@ def choose_random_move_from_list(board, moves):
         return None
 
 
+def get_board_copy(board):
+    # Make a duplicate of the board list and return it the duplicate.
+    dupe_board = []
+    for i in board:
+        dupe_board.append(i)
+    return dupe_board
+
+
 def get_computer_move(board, computer_letter):
     # Given a board and the computer's letter, determine where to move and return that move.
     if computer_letter == 'X':
@@ -118,11 +127,20 @@ def get_computer_move(board, computer_letter):
     # Here is our algorithm for our Tic Tac Toe AI:
     # First, check if we can win in the next move
         for i in range(1, 10):
-            if is_winner(board, computer_letter):
-                if is_space_free(board, i):
+            copy_board = get_board_copy(board)
+            if is_space_free(copy_board, i):
+                make_move(copy_board, computer_letter, i)
+                if is_winner(copy_board, computer_letter):
                     return i
-                    make_move(board, computer_letter, i)
-            return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+    
+    # Check if the player could win on their next move, and block them.
+        for i in range(1, 10):
+            copy_board = get_board_copy(board)
+            if is_space_free(copy_board, i):
+                make_move(copy_board, player_letter, i)
+                if is_winner(copy_board, player_letter):
+                    return i
+    return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 
 while True:
