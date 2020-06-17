@@ -1,3 +1,6 @@
+import random
+
+
 def reset_board():
     # This function Resets the board to its initial values.
     print('Welcome to Tic Tac Toe!')
@@ -20,6 +23,16 @@ def input_player_letter():
         return ['O', 'X']
 
 
+def toss():
+
+    # Randomly choose the player or computer who goes first.
+    if random.randint(0, 1) == 0:
+        return 'computer'
+    else:
+        return 'player'
+
+
 reset_board()
 input_player_letter()
+toss()
 
