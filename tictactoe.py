@@ -89,10 +89,34 @@ def play_again():
     return input().lower().startswith('y')
 
 
+def choose_random_move_from_list(board, moves):
+
+    # Returns a valid move from the passed list on the passed board.
+    # Returns None if there is no valid move.
+    possible_moves = []
+    for i in moves:
+        if is_space_free(board, i):
+            possible_moves.append(i)
+
+    if len(possible_moves) != 0:
+        return random.choice(possible_moves)
+    else:
+        return None
+
+
+def get_computer_move(board, computer_letter):
+    # Given a board and the computer's letter, determine where to move and return that move.
+    if computer_letter == 'X':
+        player_letter = 'O'
+    else:
+        player_letter = 'X'
+    return choose_random_move_from_list(board, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+
 while True:
     reset_board()
     the_board = [' ']*10
-    playerLetter, computerLetter = input_player_letter()
+    player_letter, computer_letter = input_player_letter()
     turn = toss()
     print('The ' + turn + ' will play first.')
     gameIsPlaying = True
@@ -102,9 +126,9 @@ while True:
             # Player’s turn.
             draw_board(the_board)
             move = get_player_move(the_board)
-            make_move(the_board, playerLetter, move)
+            make_move(the_board, player_letter, move)
 
-            if is_winner(the_board, playerLetter):
+            if is_winner(the_board, player_letter):
                 draw_board(the_board)
                 print('Hooray! You have won the game!')
                 gameIsPlaying = False
@@ -113,9 +137,26 @@ while True:
                     draw_board(the_board)
                     print('The game is a tie!')
                     break
+                else:
+                    turn = 'computer'
         else:
-            turn = 'computer'
+            # Computer’s turn.
+            draw_board(the_board)
+            move = get_computer_move(the_board, computer_letter)
+            print("Computer's Move is", move)
+            make_move(the_board, computer_letter, move)
+
+            if is_winner(the_board, computer_letter):
+                draw_board(the_board)
+                print('The computer has beaten you! You lose.')
+                gameIsPlaying = False
+            else:
+                if is_board_full(the_board):
+                    draw_board(the_board)
+                    print('The game is a tie!')
+                    break
+                else:
+                    turn = 'player'
 
     if not play_again():
         break
-
