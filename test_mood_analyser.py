@@ -22,3 +22,12 @@ def test_analysemood_whengivennullmessage_shouldreturn_exception():
         moodAnalyser.analysemood()
     except MoodAnalyserException as e:
         assert e.type == TypeError
+
+
+def test_analysemood_whengivenemptymessage_shouldreturn_exception():
+    from mood_analyser_exception import MoodAnalyserException
+    try:
+        moodAnalyser = MoodAnalyser("")
+        moodAnalyser.analysemood()
+    except MoodAnalyserException as e:
+        assert e.message == "Entered Empty Value"
