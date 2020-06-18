@@ -1,7 +1,5 @@
 class MoodAnalyserException(Exception):
 
-    error = None
-
     def __init__(self, error, message):
         self.error = error
         self.message = message
