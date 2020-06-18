@@ -4,13 +4,14 @@ class MoodAnalyser:
         self.message = message
 
     def analysemood(self):
+        from mood_analyser_exception import MoodAnalyserException
         try:
             if "Sad" in self.message:
                 return "SAD"
             else:
                 return "HAPPY"
-        except NameError:
-            return "HAPPY"
+        except MoodAnalyserException as e:
+            return e.type
 
 
 
