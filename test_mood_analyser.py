@@ -1,6 +1,5 @@
-import null as null
-
 from mood_analyser import MoodAnalyser
+from mood_analyser_exception import MoodAnalyserException
 
 
 def test_analysemood_whengivenmessage_sad_shouldreturn_sad():
@@ -16,16 +15,14 @@ def test_analysemood_whengivenmessage_happy_shouldreturn_happy():
 
 
 def test_analysemood_whengivennullmessage_shouldreturn_exception():
-    from mood_analyser_exception import MoodAnalyserException
     try:
-        moodAnalyser = MoodAnalyser("null")
+        moodAnalyser = MoodAnalyser(None)
         moodAnalyser.analysemood()
     except MoodAnalyserException as e:
         assert e.type == TypeError
 
 
 def test_analysemood_whengivenemptymessage_shouldreturn_exception():
-    from mood_analyser_exception import MoodAnalyserException
     try:
         moodAnalyser = MoodAnalyser("")
         moodAnalyser.analysemood()
