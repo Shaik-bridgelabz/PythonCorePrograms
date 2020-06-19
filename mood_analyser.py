@@ -16,3 +16,6 @@ class MoodAnalyser:
                 return "HAPPY"
         finally:
             return "No error"
+
+    def __eq__(self, o: object) -> bool:
+        return super().__eq__(o)
