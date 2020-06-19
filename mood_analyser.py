@@ -18,4 +18,9 @@ class MoodAnalyser:
             return "No error"
 
     def __eq__(self, o: object) -> bool:
-        return super().__eq__(o)
+        try:
+            return super().__eq__(o)
+            raise MoodAnalyserException(error=NOSuchClassError)
+        except MoodAnalyserEception as e:
+            return MoodAnalyserException.error
+
