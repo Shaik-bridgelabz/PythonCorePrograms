@@ -12,3 +12,14 @@ print(my_dict)
 my_dict['Third'] = 'Ruby'  # adding key-value pair
 my_dict['Four'] = '.Net'  # adding key-value pair
 print(my_dict)
+
+# Deleting Elements from Dictionary
+my_dict = {'First': 'Python', 'Second': 'Java', 'Third': 'Ruby'}
+a = my_dict.pop('Third')  # pop element
+print('Value:', a)
+print('Dictionary:', my_dict)
+b = my_dict.popitem()  # pop the key-value pair
+print('Key, value pair:', b)
+print('Dictionary', my_dict)
+my_dict.clear()  # empty dictionary
+print('empty', my_dict)
