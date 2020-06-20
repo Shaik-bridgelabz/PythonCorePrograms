@@ -29,3 +29,10 @@ my_dict = {'First': 'Python', 'Second': 'Java'}
 print(my_dict)
 print(my_dict['First'])  # access elements using keys
 print(my_dict.get('Second'))
+
+# Other in-build Functions of Dictionary
+my_dict = {'First': 'Python', 'Second': 'Java', 'Third': 'Ruby', 'Four': '.Net'}
+print(my_dict.keys())  # get keys
+print(my_dict.values())  # get values
+print(my_dict.items())  # get key-value pairs
+print(my_dict.get('First'))
