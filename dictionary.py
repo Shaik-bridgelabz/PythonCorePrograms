@@ -23,3 +23,9 @@ print('Key, value pair:', b)
 print('Dictionary', my_dict)
 my_dict.clear()  # empty dictionary
 print('empty', my_dict)
+
+# Accessing Elements
+my_dict = {'First': 'Python', 'Second': 'Java'}
+print(my_dict)
+print(my_dict['First'])  # access elements using keys
+print(my_dict.get('Second'))
