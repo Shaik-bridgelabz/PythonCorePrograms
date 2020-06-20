@@ -1,3 +1,5 @@
+import pytest
+
 from mood_analyser import MoodAnalyser
 from mood_analyser_exception import MoodAnalyserException
 from mood_analyser_factory import MoodAnalyserFactory
@@ -19,16 +21,16 @@ def test_analysemood_whengivennullmessage_shouldreturn_exception():
     try:
         moodAnalyser = MoodAnalyser(None)
         moodAnalyser.analysemood()
-    except MoodAnalyserException as e:
-        assert e.type == TypeError
+    except MoodAnalyserException as exception:
+        assert exception.error == TypeError
 
 
 def test_analysemood_whengivenemptymessage_shouldreturn_exception():
     try:
         moodAnalyser = MoodAnalyser("")
         moodAnalyser.analysemood()
-    except MoodAnalyserException as e:
-        assert e.message == "Entered Empty Value"
+    except MoodAnalyserException as exception:
+        assert exception.message == "Entered empty Value"
 
 
 def test_analysemood_whengiventwoobjects_ifequals_shouldretunequal():
@@ -43,5 +45,11 @@ def test_analysemood_givenclassname_whenimproper_shouldthrowexception():
     try:
         mood1 = moodAnalyserFactory
         mood2 = moodAnalyserFactory.mood_analyser
-    except MoodAnalyserException as e:
-        assert e.type == MoodAnalyserException.NoSuchClassError
+    except MoodAnalyserException as exception:
+        assert exception.message == "No such class found"
+
+
+def test_analysemood_givenemptymood_shouldthrowcustomexception():
+    with pytest.raises(MoodAnalyserException):
+        moodAnalyser = MoodAnalyser("")
+        moodAnalyser.analysemood()
