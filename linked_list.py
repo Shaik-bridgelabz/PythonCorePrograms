@@ -20,7 +20,7 @@ class SLinkedList:
     def AtBegining(self, newdata):
         NewNode = Node(newdata)
 
-    # Update the new nodes next val to existing node
+        # Update the new nodes next val to existing node
         NewNode.nextval = self.headval
         self.headval = NewNode
 
@@ -32,9 +32,9 @@ class SLinkedList:
             self.headval = NewNode
             return
         last = self.headval
-        while(last.nextval):
+        while (last.nextval):
             last = last.nextval
-        last.nextval=NewNode
+        last.nextval = NewNode
 
     # Inserting in between two nodes
     def Inbetween(self, middle_node, newdata):
@@ -45,6 +45,31 @@ class SLinkedList:
         NewNode = Node(newdata)
         NewNode.nextval = middle_node.nextval
         middle_node.nextval = NewNode
+
+    # Removing an item from a linked list
+    # Function to remove node
+    def remove_node(self, Removekey):
+
+        HeadVal = self.headval
+
+        if HeadVal is not None:
+            if (HeadVal.dataval == Removekey):
+                self.headval = HeadVal.next
+                HeadVal = None
+                return
+
+        while HeadVal is not None:
+            if HeadVal.dataval == Removekey:
+                break
+            prev = HeadVal
+            HeadVal = HeadVal.nextval
+
+        if HeadVal is None:
+            return
+
+        prev.nextval = HeadVal.nextval
+        HeadVal = None
+
 
 list1 = SLinkedList()
 list1.headval = Node("Mon")
@@ -59,4 +84,5 @@ e2.nextval = e3
 list1.AtBegining("Sun")
 list1.AtEnd("Fri")
 list1.Inbetween(list1.headval.nextval, "Thu")
+list1.remove_node("Thu")
 list1.listprint()
