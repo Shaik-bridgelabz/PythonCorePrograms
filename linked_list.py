@@ -9,6 +9,12 @@ class SLinkedList:
     def __init__(self):
         self.headval = None
 
+    # Traversing the Linked List
+    def listprint(self):
+        printval = self.headval
+        while printval is not None:
+            print(printval.dataval)
+            printval = printval.nextval
 
 list1 = SLinkedList()
 list1.headval = Node("Mon")
@@ -19,3 +25,5 @@ list1.headval.nextval = e2
 
 # Link second Node to third node
 e2.nextval = e3
+
+list1.listprint()
