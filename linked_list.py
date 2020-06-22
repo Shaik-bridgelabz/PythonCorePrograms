@@ -24,6 +24,18 @@ class SLinkedList:
         NewNode.nextval = self.headval
         self.headval = NewNode
 
+    # Inserting at the end of linked list
+    # Function to add newnode
+    def AtEnd(self, newdata):
+        NewNode = Node(newdata)
+        if self.headval is None:
+            self.headval = NewNode
+            return
+        last = self.headval
+        while(last.nextval):
+            last = last.nextval
+        last.nextval=NewNode
+
 list1 = SLinkedList()
 list1.headval = Node("Mon")
 e2 = Node("Tue")
@@ -35,5 +47,5 @@ list1.headval.nextval = e2
 e2.nextval = e3
 
 list1.AtBegining("Sun")
-
+list1.AtEnd("Thu")
 list1.listprint()
